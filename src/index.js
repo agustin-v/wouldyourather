@@ -7,6 +7,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import configureStore from './store/configureStore'
 import history from './store/configureHistory'
 import registerServiceWorker from './config/registerServiceWorker';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import App from './containers/App';
 import './styles/index.css';
@@ -19,7 +20,9 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <ConnectedRouter history={history}>
-                <App />
+                <MuiThemeProvider>
+                    <App />
+                </MuiThemeProvider>
             </ConnectedRouter>
         </BrowserRouter>
     </Provider>
