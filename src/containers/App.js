@@ -1,12 +1,23 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+//import { bindActionCreators } from 'redux'
 
 import Routes from './Routes'
+import Login from './Login'
 
-const App = () => {
+const App = ({ authenticated }) => {
+  
   return(
-    <Routes/>
+    authenticated ? <Routes/> : <Login/>
+    
   )
 }
 
-export default withRouter(App)
+const mapStateToProps = (state) => {
+  return {
+    authenticated: state.authentication.authenticated
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App))

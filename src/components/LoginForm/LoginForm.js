@@ -1,11 +1,15 @@
 import React from 'react';
+import CSSModules from 'react-css-modules'
+
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+import styles from './loginForm.css'
+
 const LoginForm = () => {
     return(
-        <div>
-            <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        <div styleName='login-form'>
+            <DropDownMenu  >
                 <MenuItem value={1} primaryText="Never" />
                 <MenuItem value={2} primaryText="Every Night" />
             </DropDownMenu>
@@ -14,4 +18,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default CSSModules(LoginForm, styles)
