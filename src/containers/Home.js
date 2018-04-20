@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 
 class Home extends Component {
@@ -8,7 +10,8 @@ class Home extends Component {
     return (
       <div className="App">
         <AppBar
-            title="Title"
+            title="Would you rather..."
+            iconElementLeft={<IconButton><ActionHome /></IconButton>}
         />
       </div>
     );
