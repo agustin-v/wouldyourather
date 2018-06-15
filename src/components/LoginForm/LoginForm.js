@@ -6,14 +6,19 @@ import MenuItem from 'material-ui/MenuItem';
 
 import styles from './loginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ({ users, authUser }) => {
     return(
         <div styleName='login-form'>
             <div style={{textAlign: 'center'}}><h2>Choose a user:</h2></div>
             <div style={{textAlign: 'center'}}>
                 <DropDownMenu  style={{width: '50%' }}>
-                    <MenuItem value={1} primaryText="Never" />
-                    <MenuItem value={2} primaryText="Every Night" />
+                    {users.map( user => 
+                        <MenuItem 
+                            key={user.id} 
+                            value={user.id} 
+                            primaryText={user.name} 
+                            onClick={(e) => authUser(user) }
+                    />)}
                 </DropDownMenu>
             </div>
         </div>
