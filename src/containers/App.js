@@ -1,17 +1,24 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
-//import { bindActionCreators } from 'redux'
+import { loadUsers} from '../actions/usersActions'
 
 import Routes from './Routes'
 import Login from './Login'
 
-const App = ({ authenticated }) => {
-  
-  return(
-    authenticated ? <Routes/> : <Login/>
+class App extends React.Component  {
+
+    componentDidMount() {
+        this.props.dispatch(loadUsers())
+    }
     
-  )
+    render () {
+        const { authenticated } = this.props
+        return(
+            authenticated ? <Routes/> : <Login/>
+        
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
