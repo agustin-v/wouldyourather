@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter,Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { loadUsers } from '../actions/usersActions'
 import { loadQuestions } from '../actions/questionsActions'
@@ -31,8 +31,8 @@ class App extends React.Component  {
                 ? <React.Fragment>
                     <AppBar
                         title={`${user.name}, would you rather...`}
-                        iconElementLeft={<IconButton><ActionHome /></IconButton>}
-                        iconElementRight={<FlatButton label="Logout" onClick={(e) => this.logout() }/>} 
+                        iconElementLeft={<Link to={'/'} style={{textDecoration: 'none'}}><IconButton><ActionHome /></IconButton></Link>}
+                        iconElementRight={<Link to={'/'} style={{textDecoration: 'none'}}><FlatButton label="Logout" onClick={(e) => this.logout() }/></Link>} 
                     /> 
                     <Routes/>
                 </React.Fragment>

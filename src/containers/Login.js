@@ -22,7 +22,7 @@ const Login = ({users, dispatch }) => {
 
 const mapStateToProps = ({users}) => {
     return {
-      users: Object.keys(users).map( user => { return { id: users[user].id, name:  users[user].name, avatarURL: users[user].avatarURL}})
+      users: Object.keys(users).map( user => users[user] )
     }
   }
 
