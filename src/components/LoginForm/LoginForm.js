@@ -17,7 +17,7 @@ const LoginForm = ({ users, authUser }) => {
                             key={user.id} 
                             value={user.id} 
                             primaryText={user.name} 
-                            onClick={(e) => authUser(user) }
+                            onClick={(e) => authUser(user.id) }
                     />)}
                 </DropDownMenu>
             </div>

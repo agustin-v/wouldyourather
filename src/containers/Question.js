@@ -26,10 +26,10 @@ const Question = ({ user, question , author, answered, question_id, qtyUsers }) 
 const mapStateToProps = ({authentication, questions, users}, props) => {
     const question_id = props.match.params.question_id;
     return {
-        user: authentication.user,
+        user: users[authentication.user],
         question: questions[question_id],
         author: users[questions[question_id].author],
-        answered: authentication.user.answers[question_id] ? true : false,
+        answered: users[authentication.user].answers[question_id] ? true : false,
         question_id : question_id,
         qtyUsers: Object.keys(users).length,
     }
