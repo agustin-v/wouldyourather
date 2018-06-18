@@ -4,6 +4,7 @@ import Home from './Home';
 import Question from './Question'
 import Add from './Add'
 import Leaderboard from './Leaderboard';
+import NotFound from './NotFound'
 
 const Routes = () => {
     return(
@@ -13,6 +14,7 @@ const Routes = () => {
                 <Route exact path='/questions/:question_id' component={Question}/>
                 <Route exact path='/add' component={Add}/>
                 <Route exact path='/leaderboard' component={Leaderboard}/>
+                <Route exact path='*' component={NotFound}/>
             </Switch>
         </main>
     )
