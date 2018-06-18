@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, SAVE_ANSWER } from '../actions/questionsActions'
+import { RECEIVE_QUESTIONS, SAVE_ANSWER , SAVE_QUESTION} from '../actions/questionsActions'
 
 export function questions (state = {}, action) {
     switch(action.type) {
@@ -17,6 +17,11 @@ export function questions (state = {}, action) {
                             votes: state[action.qid][action.answer].votes.concat([action.authedUser])
                         }
                     }
+            }
+        case SAVE_QUESTION: 
+            return {
+                ...state,
+                [action.question.id]: action.question
             }
         default :
             return state

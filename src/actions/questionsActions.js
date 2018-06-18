@@ -1,7 +1,9 @@
-import { _getQuestions} from '../data/_DATA'
+import { _getQuestions, _saveQuestion } from '../data/_DATA'
+import { saveAskedQuestion } from './usersActions'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_ANSWER = 'SAVE_ANSWER'
+export const SAVE_QUESTION = 'SAVE_QUESTION'
 
 export function receiveQuestions (questions) {
     return{
@@ -25,5 +27,24 @@ export function savePollAnswerUser(authedUser, qid, answer) {
         authedUser,
         qid,
         answer
+    }
+}
+
+export function saveQuestion(question) {
+    return (dispatch) => {
+        return _saveQuestion(question).then((formattedQuestion) => {
+            dispatch(setQuestion(formattedQuestion))
+            dispatch(saveAskedQuestion(formattedQuestion.author, formattedQuestion.id))
+        })
+        .catch((err) => {
+            console.warn('Error in saving answer: ', err)
+        })
+    }
+}
+
+export function setQuestion(question) {
+    return {
+        type: SAVE_QUESTION,
+        question
     }
 }

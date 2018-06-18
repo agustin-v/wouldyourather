@@ -1,6 +1,7 @@
 import { _getUsers, _saveQuestionAnswer } from '../data/_DATA'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ANSWER_POLL = 'ANSWER_POLL'
+export const SAVE_ASKED_QUESTION = 'SAVE_ASKED_SAVE_ASKED_QUESTION'
 
 export function receiveUsers (users) {
     return {
@@ -37,3 +38,11 @@ export function answerPoll(authedUser, qid, answer) {
         answer
     }
 }
+
+export function saveAskedQuestion(user, question) {
+    return {
+        type: SAVE_ASKED_QUESTION,
+        user,
+        question
+    }
+} 
