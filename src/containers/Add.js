@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { saveQuestion } from '../actions/questionsActions'
+import { Redirect } from 'react-router-dom'
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import { Redirect } from 'react-router-dom'
 
 class  Add  extends React.Component {
 

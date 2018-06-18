@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom'
 
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Home from 'material-ui/svg-icons/action/home';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import Paper from 'material-ui/Paper';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -22,6 +26,16 @@ const Leaderboard = ({ users }) => {
                     }
                 </List>
             </Paper>
+            <Link to={'/'} style={{textDecoration: 'none'}}>
+                <FloatingActionButton style={{position: 'absolute', left: '20px', bottom: '20px'}}>
+                    <Home />
+                </FloatingActionButton>
+            </Link>
+            <Link to={'/add'} style={{textDecoration: 'none'}}>
+                <FloatingActionButton style={{position: 'absolute', right: '20px', bottom: '20px'}}>
+                    <ContentAdd />
+                </FloatingActionButton>
+            </Link>
         </div>
     )
 }
@@ -33,4 +47,4 @@ const mapStateToProps = ({users}) => {
     }
 }
 
-export default connect(mapStateToProps)(Leaderboard);
+export default withRouter(connect(mapStateToProps)(Leaderboard));
