@@ -1,10 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { handleSaveAnswer } from '../actions/usersActions'
 
 import PendingAnswer from '../components/PendingAnswer/PendingAnswer'
 import Answered from '../components/Answered/Answered'
 
-const Question = ({ user, question , author, answered, question_id, qtyUsers }) => {
+const Question = ({ user, question , author, answered, question_id, qtyUsers, dispatch }) => {
+
+    const saveAnswer = (answer) => {
+        dispatch(handleSaveAnswer(user.id, question_id, answer))
+    }
+
     return (
         <div className='container'>
             {!answered
@@ -12,6 +18,7 @@ const Question = ({ user, question , author, answered, question_id, qtyUsers }) 
                     avatarURL={author.avatarURL}
                     optionOne={question.optionOne.text}
                     optionTwo={question.optionTwo.text}
+                    saveAnswer={saveAnswer}
                 />
                 : <Answered 
                     answer={question[user.answers[question_id]].text}
