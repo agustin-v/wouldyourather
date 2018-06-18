@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { handleSaveAnswer } from '../actions/usersActions'
 import { savePollAnswerUser } from '../actions/questionsActions'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Home from 'material-ui/svg-icons/action/home';
