@@ -19,7 +19,6 @@ export function loadUsers() {
 }
 
 export function handleSaveAnswer(authedUser, qid, answer) {
-    console.log('from action creator',authedUser, qid, answer)
     return (dispatch) => {
         return _saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
             dispatch(answerPoll(authedUser, qid, answer))
