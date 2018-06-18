@@ -45,7 +45,7 @@ class App extends React.Component  {
 const mapStateToProps = (state) => {
   return {
     authenticated: state.authentication.authenticated,
-    user: state.authentication.user
+    user: state.users[state.authentication.user]
   }
 }
 
