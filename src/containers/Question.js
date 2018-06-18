@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleSaveAnswer } from '../actions/usersActions'
+import { savePollAnswerUser } from '../actions/questionsActions'
 
 import PendingAnswer from '../components/PendingAnswer/PendingAnswer'
 import Answered from '../components/Answered/Answered'
@@ -9,6 +10,7 @@ const Question = ({ user, question , author, answered, question_id, qtyUsers, di
 
     const saveAnswer = (answer) => {
         dispatch(handleSaveAnswer(user.id, question_id, answer))
+        dispatch(savePollAnswerUser(user.id, question_id, answer))
     }
 
     return (
