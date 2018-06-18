@@ -1,39 +1,74 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import { saveQuestion } from '../actions/questionsActions'
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Redirect } from 'react-router-dom'
 
-const Add = () => {
-    return (
-        <div className='container'>
-            <Paper style={ {textAlign: 'jsutify', margin: '20px', padding: '20px'} } zDepth={1} rounded={false}>
-                <h2>Add a new poll</h2>
-                <form>
-                    <div className='row'>
-                        <div className='col-md-6'>
-                            <TextField
-                                hintText="Option one"
-                                underlineFocusStyle={{color: '#00bcd4'}}
-                                fullWidth={true}
-                            />
+class  Add  extends React.Component {
+
+    state = {
+        toHome: false
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const optionOneText = e.target.elements['optionOne'].value;
+        const optionTwoText = e.target.elements['optionTwo'].value;
+        const author = this.props.user.id
+        this.props.dispatch(saveQuestion({optionOneText, optionTwoText, author}))
+
+        this.setState({toHome: true})
+    }
+    render() {
+
+        if (this.state.toHome === true) {
+            return <Redirect to='/' />
+        }
+
+        return (
+            <div className='container'>
+                <Paper style={ {textAlign: 'jsutify', margin: '20px', padding: '20px'} } zDepth={1} rounded={false}>
+                    <h2>Add a new poll</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className='row'>
+                            <div className='col-md-6'>
+                                <TextField
+                                    hintText="Option one"
+                                    underlineFocusStyle={{color: '#00bcd4'}}
+                                    fullWidth={true}
+                                    name='optionOne'
+                                    required
+                                />
+                            </div>
+                            <div className='col-md-6'>
+                                <TextField
+                                    hintText="Option two"
+                                    underlineFocusStyle={{color: '#00bcd4'}}
+                                    fullWidth={true}
+                                    name='optionTwo'
+                                    required
+                                />
+                            </div>
                         </div>
-                        <div className='col-md-6'>
-                            <TextField
-                                hintText="Option two"
-                                underlineFocusStyle={{color: '#00bcd4'}}
-                                fullWidth={true}
-                                primary={true}
-                            />
+                        <div style={ {textAlign: 'right'} }>
+                        <button
+                            type='submit'>
+                                Submit
+                            </button>
                         </div>
-                    </div>
-                    <div style={ {textAlign: 'right'} }>
-                        <RaisedButton label='Create poll' style={{ margin: '10px' }}/>
-                    </div>
-                </form>
-            </Paper>
-        </div>
-    )
+                    </form>
+                </Paper>
+            </div>
+        )
+    }
 }
 
-export default Add
+const mapStateToProps = ({authentication, questions, users}) => {
+    return {
+        user: users[authentication.user]
+    }
+}
+
+export default connect(mapStateToProps)(Add)
